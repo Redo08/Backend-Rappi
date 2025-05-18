@@ -13,7 +13,7 @@ class PhotoController:
         photos = Photo.query.all()
         return [photo.to_dict() for photo in photos]
     
-    @staticmethod
+    """@staticmethod
     def get_by_id(photo_id):
         photo = Photo.query.get_or_404(photo_id)
         image_path = os.path.join(current_app.root_path, photo.image_url)
@@ -24,16 +24,21 @@ class PhotoController:
         else:
             abort(404, description="Imagen no encontrada")
         """
-        print("----->",photo_id)
-        return send_from_directory('uploads', 'Captura_de_pantalla_122.png')
-        """
-    """
+        #print("----->",photo_id)
+        #return send_from_directory('uploads', 'Captura_de_pantalla_122.png')
+
+    
     @staticmethod
     def get_by_id(photo_id):
         photo = Photo.query.get_or_404(photo_id)
         return photo.to_dict()
-    """
     
+    
+    @staticmethod
+    def get_by_issue_id(issue_id):
+        photos = Photo.query.filter_by(issue_id=issue_id).all()
+        return [photo.to_dict() for photo in photos]
+
     @staticmethod
     def create(data):
         new_photo = Photo(

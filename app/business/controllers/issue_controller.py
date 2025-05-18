@@ -15,6 +15,11 @@ class IssueController:
         return issue.to_dict()
     
     @staticmethod
+    def get_by_motorcycle_id(motorcycle_id):
+        issues = Issue.query.filter_by(motorcycle_id=motorcycle_id).all()
+        return [issue.to_dict() for issue in issues]
+    
+    @staticmethod
     def create(data):
         new_issue = Issue(
             motorcycle_id=data.get('motorcycle_id'),
