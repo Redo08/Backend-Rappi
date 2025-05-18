@@ -230,6 +230,10 @@ def update_issue(id):
 def delete_issue(id):
     return jsonify(IssueController.delete(id))
 
+@main_bp.route('/motorcycles/<int:motorcycle_id>/issues', methods=['GET'])
+def get_motorcycle_issues(motorcycle_id):
+    return jsonify(IssueController.get_by_motorcycle_id(motorcycle_id))
+
 # Photo routes
 @main_bp.route('/photos', methods=['GET'])
 def get_photos():
@@ -257,6 +261,10 @@ def update_photo(id):
 @main_bp.route('/photos/<int:id>', methods=['DELETE'])
 def delete_photo(id):
     return jsonify(PhotoController.delete(id))
+@main_bp.route('/issues/<int:issue_id>/photos', methods=['GET'])
+def get_issue_photos(issue_id):
+    return jsonify(PhotoController.get_by_issue_id(issue_id))
+
 
 ############## Carga imágenes
 

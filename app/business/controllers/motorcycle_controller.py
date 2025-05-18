@@ -22,6 +22,8 @@ class MotorcycleController:
         motorcycle = Motorcycle.query.get_or_404(motorcycle_id)
         return motorcycle.to_dict()
     
+    
+    
     @staticmethod
     def create(data):
         new_motorcycle = Motorcycle(
