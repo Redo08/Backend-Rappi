@@ -14,15 +14,23 @@ class AddressController:
         return address.to_dict()
     
     @staticmethod
+    def get_by_order_id(order_id):
+        addresses = Address.query.filter_by(order_id=order_id).all()
+        return [address.to_dict() for address in addresses]
+    
+    @staticmethod
     def create(data):
+        
+        received_additional_info = data.get('additional_info')
         new_address = Address(
             order_id=data.get('order_id'),
             street=data.get('street'),
             city=data.get('city'),
             state=data.get('state'),
             postal_code=data.get('postal_code'),
-            additional_info=data.get('additional_info')
+            additional_info=received_additional_info
         )
+        
         
         db.session.add(new_address)
         db.session.commit()

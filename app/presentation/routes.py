@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, redirect, url_for, session
 from app.business.controllers.restaurant_controller import RestaurantController
 from app.business.controllers.product_controller import ProductController
 from app.business.controllers.menu_controller import MenuController
@@ -133,6 +133,10 @@ def get_addresses():
 @main_bp.route('/addresses/<int:id>', methods=['GET'])
 def get_address(id):
     return jsonify(AddressController.get_by_id(id))
+
+@main_bp.route('/addresses/<int:order_id>/order', methods=['GET'])
+def get_order_address(order_id):
+    return jsonify(AddressController.get_by_order_id(order_id))
 
 @main_bp.route('/addresses', methods=['POST'])
 def create_address():
