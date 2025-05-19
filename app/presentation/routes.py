@@ -134,6 +134,10 @@ def get_addresses():
 def get_address(id):
     return jsonify(AddressController.get_by_id(id))
 
+@main_bp.route('/addresses/<int:order_id>/order', methods=['GET'])
+def get_order_address(order_id):
+    return jsonify(AddressController.get_by_order_id(order_id))
+
 @main_bp.route('/addresses', methods=['POST'])
 def create_address():
     return jsonify(AddressController.create(request.json))
